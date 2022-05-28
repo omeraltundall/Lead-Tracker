@@ -12,9 +12,16 @@ let myLeads= []
         chrome.tabs.query({active: true, currentWindow:true},function(tabs){
             let activeTab = tabs[0]
             let activeTabId = activeTab.id
+            for(let i = 0;i<myLeads.length;i++)
+            {
+                if(myLeads[i] === activeTab.url)
+                isUrlHas = true
+            }
+            if(!isUrlHas){
             myLeads.push(activeTab.url)
             localStorage.setItem("myLeads",JSON.stringify(myLeads))
             render(myLeads)
+            }
         })
         
     })
